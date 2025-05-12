@@ -20,9 +20,28 @@
   --header-fam: "Catamaran";
   --light-night: #1c006c;
   --deep-night: #030030;
-	--pastel-cyan: hsl(180 100% 87%);
-	--pastel-magenta: hsl(300 100% 88.1%);
-	--pastel-yellow: hsl(60 100% 84%);
+
+	--cyan: hsl(180 100% 87%);
+	--magenta: hsl(300 100% 88.1%);
+	--yellow: hsl(60 100% 84%);
+	--pastel-cyan: var(--cyan), transparent;
+	--pastel-magenta: var(--magenta), transparent;
+	--pastel-yellow: var(--yellow), transparent;
+
+	/* --blood:  linear-gradient(45deg, #ffbc00, #ff0058);
+  --flag:   linear-gradient(-45deg, #03a9f4, #ff0058);
+  --rewild: linear-gradient(0, #4dff03, #00d0ff); */
+	--blood:  linear-gradient(45deg, #FB3D2E, transparent);
+  --flag:   linear-gradient(-45deg, #55BFFB, transparent);
+  --rewild: linear-gradient(0, #EAD43F, transparent);
+
+  --top-bg-grad: linear-gradient(var(--pastel-cyan));
+  --bl-bg-grad: linear-gradient(-45deg, var(--pastel-magenta));
+  --br-bg-grad: linear-gradient(45deg, var(--pastel-yellow));
+  /* --top-bg-grad: var(--rewild);
+  --bl-bg-grad: var(--flag);
+  --br-bg-grad: var(--blood); */
+  --bg-blend: hard-light;
   --content-width: min(calc(100vw - 2rem), 960px);
 }
 
@@ -41,23 +60,8 @@ body {
   font-weight: 300;
   margin: 0;
   padding: 0;
-  background:
-  	linear-gradient(
-  		var(--pastel-blue),
-  		transparent
-  	),
-  	linear-gradient(
-  		-45deg,
-  		var(--pastel-magenta),
-  		transparent
-  	),
-  	linear-gradient(
-  		45deg,
-  		var(--pastel-yellow),
-  		transparent
-  	)
-   ;
-   background-blend-mode: hard-light;
+  background: var(--top-bg-grad), var(--bl-bg-grad), var(--br-bg-grad);
+  background-blend-mode: var(--bg-blend);
 }
 header {
   position: relative;
@@ -86,16 +90,16 @@ h1 span {
   -webkit-text-stroke-width: 2px;
 }
 h1 .dem {
-  /* color: var(--pastel-cyan); */
+  color: var(--cyan);
   font-size: 1.05em;
 }
 h1 .tech {
-  /* color: var(--pastel-magenta); */
+  color: var(--magenta);
   margin-top: -0.2em;
   padding-left: 0.2rem;
 }
 h1 .all {
-  /* color: var(--pastel-yellow); */
+  color: var(--yellow);
   font-size: 0.8em;
   letter-spacing: 0.5em;
   padding-left: 2rem;

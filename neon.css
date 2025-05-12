@@ -47,14 +47,33 @@ body {
   font-weight: 300;
   margin: 0;
   padding: 0;
+  background:
+  	linear-gradient(
+  		hsl(180 100% 87%),
+  		transparent
+  	),
+  	linear-gradient(
+  		-45deg,
+  		hsl(300 100% 88.1%),
+  		transparent
+  	),
+  	linear-gradient(
+  		45deg,
+  		hsl(60 100% 84%),
+  		transparent
+  	)
+   ;
+   background-blend-mode: hard-light;
 }
 header {
+  position: relative;
   max-width: var(--content-width);
   margin: 2rem auto;
   padding: 2rem;
   border-radius: 1rem;
   background: linear-gradient(to top, var(--light-night), var(--deep-night));
   /* background: #000; */
+  z-index: 10;
 }
 h1 {
   font-family: var(--header-fam);
@@ -65,28 +84,31 @@ h1 {
   margin: 0;
 }
 h1 span {
-  background: var(--txt-grad);
   display: block;
   text-align: center;
+  background: var(--txt-grad);
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   text-fill-color: transparent;
-  -webkit-text-stroke-color: #fff;
-  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: white;
+  -webkit-text-stroke-width: 1px;
 }
 h1 .dem {
   --txt-grad: var(--blood);
+  /* color: #ff0058; */
   font-size: 1.05em;
 }
 h1 .tech {
   --txt-grad: var(--flag);
+  /* color: #03a9f4; */
   margin-top: -0.2em;
   padding-left: 0.2rem;
 }
 h1 .all {
   --txt-grad: var(--rewild);
+  /* color: #4dff03; */
   font-size: 0.8em;
   letter-spacing: 0.5em;
   padding-left: 1.3rem;
@@ -103,8 +125,11 @@ header p {
 }
 main {
   max-width: var(--content-width);
-  margin: 2rem auto;
-  padding: 1rem;
+  margin: -4rem auto 2rem auto;
+  padding: 3rem 2rem 1rem 2rem;
+  background: white;
+  /* margin-top: -4rem; */
+  border-radius: 1rem;
 }
 strong {
   font-weight: 700;

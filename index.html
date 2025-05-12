@@ -27,191 +27,85 @@
     - logo
     - mobile
     -->
+    <header>
+      <h1>
+        <span class="dem">Democratic</span>
+        <span class="tech">Technology</span>
+        <span class="all">Alliance</span>
+      </h1>
+      <p>break. build. bolster.</p>
+    </header>
     <main>
-      <header>
-        <h1>
-          <span class="dem">Democratic</span>
-          <span class="tech">Technology</span>
-          <span class="all">Alliance</span>
-        </h1>
-        <p>break. build. bolster.</p>
-      </header>
-      <section id="what">
-        <h2>What is this?</h2>
-        <p>
-          DASL ("dazzle") is a small set of simple, standard primitives for working with content-addressed,
-          linked data. It builds on content addressing, a proven approach used in Git and
-          <a href="https://docs.ipfs.tech/concepts/what-is-ipfs/">IPFS</a> to
-          create reliable content identifiers (known as CIDs) through cryptographic hashing. Content addressing
-          enables robust data integrity checks and efficient networking: systems can verify they received exactly
-          what they asked for and avoid downloading the same content twice. The linked data part lets you link to
-          stuff by its hash. You can build very big graphs with these primitives, such as the graph behind Bluesky.
-        </p>
-        <p>
-          We call DASL "data-addressed" because it supports a data serialization component that makes
-          <a href="https://proto.school/content-addressing">content-addressing</a> sweet and easy when
-          working with data. The design is inspired by subcomponents of the
-          <a href="https://docs.ipfs.tech/concepts/content-addressing/">IPFS</a> universe, but simplified to improve
-          interoperability, decrease costs, and work well with the web. More specifically, our priorities are:
-        </p>
-        <ul>
-          <li>
-            <strong>pave the cowpaths</strong>: we focus on supporting what people trying to solve real-world
-            problems actually use. This takes over any consideration of engineering ideals or theoretical purity.
-            We're retconning the spec to what people actually use implement — as it should be.
-          </li>
-          <li>
-            <strong>extensibility vs optionality</strong>: extensibility is important for long-lived distributed
-            systems, because the world will happen and you will need to change. But introducing optionality
-            reduces interoperability and increases cost of both implementation and adoption. So rather than
-            require support for many options now, we have extension points now but deliberately don't use their
-            full range.
-          </li>
-          <li>
-            <strong>don't make me think</strong>: you don't want to be thinking about content addressing. You
-            want to grab this off the shelf and have something that works out of the box. Nothing weird, no
-            impedance mismatch with the systems you know and love (or maybe know and hate, but whatever, it
-            just works).
-          </li>
-          <li>
-            <strong>lightweight loading</strong>: some people like JavaScript, others don't. We don't care, we
-            just want things that work. What's certain is that you can't ignore it and be relevant. The ability
-            to ship small code to the browser is critical.
-          </li>
-          <li>
-            <strong>Unix philosophy</strong>: all of our specs are tiny and meant to compose together in simple
-            ways that can be implemented independently from one another.
-          </li>
-        </ul>
-        <p>
-          This is intended to work for the community, to grow support for what we need. If you have thoughts, don't
-          be shy and <a href="https://github.com/darobin/dasl.ing/issues">submit an issue</a>! No stupid questions,
-          don't assume everyone else has context that you don't. If this page isn't enough to understand DASL,
-          then we're the ones who screwed up.
-        </p>
-      </section>
-      <section id="how">
-        <h2>How</h2>
-        <p>
-          This section describes how to use DASL patterns. It's work in progress!
-        </p>
-      </section>
-      <section id="code">
-        <h2>Implementations</h2>
-        <p>
-          DASL is a strict subset of IPFS CIDs and IPLD, so existing IPFS and IPLD implementations will just
-          read DASL CIDs and dCBOR42 without so much as a hiccup. Some implementations also specifically target a DASL subset.
-        </p>
-        <p>Here are some implementations that partially or fully support DASL:</p>
-        <ul>
-          <li>
-            <a href="https://github.com/mary-ext/atcute/">atcute</a> (JS/TS): a collection of lightweight
-            packages to make working with Bluesky and the ATmosphere easy.
-          </li>
-          <li>
-            <a href="https://github.com/DavidBuchanan314/dag-cbrrr">dag-cbrrr</a> (Python): fast DAG-CBOR
-            implementation.
-          </li>
-          <li>
-            <a href="https://github.com/MarshalX/python-libipld">python-libipld</a> (Python): a Python
-            wrapper around Rust, focused on the ATmosphere.
-          </li>
-          <li>
-            <a href="https://github.com/ipld/rust-ipld-core">ipld-core</a> (Rust): fast Rust implementation.
-          </li>
-          <li>
-            <a href="https://www.npmjs.com/package/@dasl/rasl">@dasl/rasl</a> (TS/JS): an implementation of RASL
-            that's a drop-in handler for ExpressJS.
-          </li>
-          <li>
-            <a href="https://salsa.debian.org/debian/rust_cid_npm">rust_cid_npm</a> (Rust): Fast and tiny rust
-            library, CLI tool, and npm package to generate CIDs.
-          </li>
-          <li>
-            <a href="https://github.com/ipfs/go-cid">go-cid</a> (Go): implements the CID spec
-          </li>
-          <li>
-            <a href="https://github.com/ipfs/kubo/">Kubo</a>/<a href="https://github.com/ipfs/boxo/">Boxo</a> (Go):
-            the Swiss-Army chainsaw of all things IPFS.
-          </li>
-          <li>
-            <a href="https://helia.io/">Helia</a> (JS/TS): a browser- and CDN-friendly, modular, "import only what you need" JS implementation of IPFS.
-          </li>
-        </ul>
-      </section>
-      <section id="spec">
-        <h2>Specifications</h2>
-        <dl>
-          <dt>
-            <a href="cid.html">Content Identifiers (CIDs)</a>
-          </dt>
-          <dd>
-            CIDs (Content IDs) are identifiers used for addressing resources by their contents, essentially a hash
-            with limited metadata.
-          </dd>
-          <dt>
-            <a href="dcbor42.html">Deterministically-serialized CBOR with Tag 42 (dCBOR42)</a>
-          </dt>
-          <dd>
-            dCBOR42 is a serialization format that is deterministic (so that the same data will have the same CID)
-            and that features native support for using CIDs as links.
-          </dd>
-          <dt>
-            <a href="car.html">Content-Addressable aRchives (CAR)</a>
-          </dt>
-          <dd>
-            The CAR format offers a serialized representation of set of content-addressed
-            resources in one single concatenated stream, alongside a header that describes
-            that content.
-          </dd>
-          <dt>
-            <a href="masl.html">MASL — Metadata for Arbitrary Structures &amp; Links</a>
-          </dt>
-          <dd>
-            MASL is a CBOR-based metadata system that is designed to work well with content-addressed
-            and decentralised systems, to enable fully self-contained, self-certified content
-            distribution.
-          </dd>
-          <dt>
-            <a href="rasl.html">RASL — Retrieval of Arbitrary Structures &amp; Links</a>
-          </dt>
-          <dd>
-            RASL is a URL scheme used to identify content-addressed DASL resources
-            along with a simple HTTP-based retrieval method.
-          </dd>
-          <dt>
-            <a href="bdasl.html">Big DASL (BDASL)</a>
-          </dt>
-          <dd>
-            This extends DASL CIDs with a new hash type that works better for large files but isn't
-            available by default in browsers, and therefore not an appropriate option in most
-            situations.
-          </dd>
-          <dt>
-            <a href="ipfs.html">IPFS Interoperability Considerations</a>
-          </dt>
-          <dd>
-            DASL components are designed to be small and to the extent possible self-contained.
-            Because of that, despite having roots in IPFS, no DASL component depends on
-            traditional IPFS implementations. In many cases, systems produced to work with
-            DASL will interoperate with IPFS, but DASL's independence means that there can
-            occasionally be impedance mismatch. This document is a non-normative list of
-            things to consider when using DASL with IPFS systems, particularly with ones based
-            on the DHT and Bitswap.
-          </dd>
-        </dl>
-      </section>
-      <footer>
-        <p>
-          Made with 👾 by the IPFS Foundation.
-        </p>
-        <nav>
-          <ul>
-            <li><a href="https://github.com/darobin/dasl.ing">Source</a></li>
-            <li><a href="https://github.com/darobin/dasl.ing/issues">Issues</a></li>
-          </ul>
-        </nav>
-      </footer>
+      <p>
+        <strong>Digital technology is infrastructure</strong>. It’s a critical input to our businesses, essential to the
+        operation of our governments, everywhere in the lives of our citizens.
+      </p>
+      <p>
+        <strong>Infrastructure is powerful</strong>. It shapes what runs on it and sets the rules that govern its users.
+        Infrastructural power is even stronger when the infrastructure is programmable such that it can
+        adapt the way in which it directs those who depend on it.
+      </p>
+      <p>
+        <strong>Authoritarian infrastructure leads to an authoritarian society</strong>. A tiny group of people has a
+        near-unilateral say over the information we access, our communication channels, the taxes they
+        levy on digital businesses, the rules of online commerce, the livelihood of our media, the
+        labour conditions of millions, the operation of almost all critical internet services. The
+        laws they set have a footprint that competes directly with those of the state.
+      </p>
+      <p>
+        This fast-growing encroachment on our sovereignty has created a doom loop in which authoritarian
+        digital infrastructure undermines democracy, and weaker democracy is then incapable of containing
+        the expansion of authoritarian infrastructure. Fixated on the myth that tech monopolies were built
+        with innovation and can therefore be broken by innovation, our leaders have consistently missed the
+        fact that what the monopolies do isn’t innovate but rather capture key control points in the
+        architecture of digital systems. Tech sovereignty cannot come innovation policy but only by
+        liberating our infrastructure from foreign, increasingly hostile control.
+      </p>
+      <p>
+        Over centuries, we have learnt to govern traditional infrastructure piece by piece so that it would
+        serve us rather than the other way around. We have established models to operate infrastructure in
+        the public interest, supporting businesses in focusing on their core competences and citizens in
+        their ability to be and to do more.
+      </p>
+      <p>
+        But the sudden arrival of so many new infrastructural systems with the stunning growth of the
+        digital sphere has created an infrastructure shock. If we care about democracy, we have to
+        shock it back.
+      </p>
+      <p>
+        Our strategy to conquer democratic power over the digital sphere and reverse the doom loop is
+        threefold:
+      </p>
+      <ul>
+        <li>
+          We will <strong>bolster</strong> institutional capacity across society so that digital infrastructures are
+          governed by their stakeholders.
+        </li>
+        <li>
+          We will <strong>break</strong> the authoritarian power in tech by relentlessly going after their large-scale illegal
+          behaviour and dismantling their abusive concentration of power.
+        </li>
+        <li>
+          We will <strong>build</strong> infrastructure designed to support competitiveness, resilience, and democratic
+          governance through an ambitious deployment of tech, governance, and funding bringing together
+          actors from government, the private sector, and the commons.
+        </li>
+      </ul>
+      <p>
+        This is a daunting project but we have the technology, the people, and the know-how. We are
+        experienced and pragmatic, we know that the result will be imperfect and have to be continuously
+        refined. But we will take imperfect freedom over begging monopolies for crumbs. We will take the
+        messy resilience of a creative society over Silicon Valley’s brittle and bland slop.
+      </p>
+      <p>
+        Democracy is as daunting as it is imperfect — and there is no better way to be. Democracy is the
+        future of technology. It’s time for this broad alliance to join forces across our society and to
+        drive every part of democracy deep into our digital sphere.
+      </p>
     </main>
+    <footer>
+      <p>
+      </p>
+    </footer>
   </body>
 </html>

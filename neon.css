@@ -20,10 +20,11 @@
   --header-fam: "Catamaran";
   --light-night: #1c006c;
   --deep-night: #030030;
-  --content-width: 960px;
+  --content-width: min(calc(100vw - 2rem), 960px);
   --text-gradient-direction: 180deg;
   --blood:  linear-gradient(var(--text-gradient-direction), #ffbc00, #ff0058);
-  --flag:   linear-gradient(var(--text-gradient-direction), #03a9f4, #ff0058);
+  /* --flag:   linear-gradient(var(--text-gradient-direction), #03a9f4, #ff0058); */
+  --flag:   linear-gradient(var(--text-gradient-direction), #03a9f4, #1c006c);
   --rewild: linear-gradient(var(--text-gradient-direction), #4dff03, #00d0ff);
 }
 
@@ -48,7 +49,7 @@ body {
   padding: 0;
 }
 header {
-  max-width: min(calc(100vw - 2rem), var(--content-width));
+  max-width: var(--content-width);
   margin: 2rem auto;
   padding: 2rem;
   border-radius: 1rem;
@@ -99,4 +100,12 @@ header p {
   text-align: center;
   margin: 0;
   letter-spacing: 0.4em;
+}
+main {
+  max-width: var(--content-width);
+  margin: 2rem auto;
+  padding: 1rem;
+}
+strong {
+  font-weight: 700;
 }
